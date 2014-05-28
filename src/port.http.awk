@@ -27,17 +27,17 @@ get("host") == "plus.google.com" {
 
 # protect against redirections
 get("http.domain") == "google.com" && get("http.path") == "/url" && get("http.args.q") {
-    label("surf (protected)"); run(browser(get("http.args.q")))
+    label("firefox (protected)"); run(browser(get("http.args.q")))
     # todo: improve:
     label("(protected)..."); menu(nest(get("http.args.q")))
 }
 get("http.domain") == "google.com" && get("http.path") == "/imgres" {
-    label("surf (protected)"); run(browser(get("http.args.imgrefurl")))
-    label("surf (image)"); menu(browser(get("http.args.imgurl")))
+    label("firefox (protected)"); run(browser(get("http.args.imgrefurl")))
+    label("firefox (image)"); menu(browser(get("http.args.imgurl")))
 }
 get("http.domain") == "facebook.com" && get("http.args.redirect_uri") {
     # todo: remove facebook app references from link
-    label("surf (protected)"); run(browser(get("http.args.redirect_uri")))
+    label("firefox (protected)"); run(browser(get("http.args.redirect_uri")))
     label("(protected)..."); menu(nest(get("http.args.redirect_uri")))
 }
 func decrypt_goo_gl(url,    s, m) {
@@ -70,10 +70,10 @@ get("http.domain") == "youtube.com" && get("http.args.list") {
 }
 
 get("http.url") {
-    label("surf"); run(browser(get("http.url")))
+    label("firefox"); run(browser(get("http.url")))
     label("tidy errors"); menu(pager("curl -s " Q(get("http.url")) " | tidy -e 2>&1"))
     label("tidy html"); menu(pager("curl -s " Q(get("http.url")) " | tidy -i -u -q 2> /dev/null"))
 }
 get("hostport") {
-    label("surf host"); menu(browser(get("hostport")))
+    label("firefox host"); menu(browser(get("hostport")))
 }
