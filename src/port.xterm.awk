@@ -56,7 +56,7 @@ get("exe") ~ /download/ {
     xterm_flags = xterm_flags flag("-fn", get("xterm_font"))
     xterm_flags = xterm_flags flag("-title", get("xterm_title"))
     
-    run("xterm " xterm_flags preif(" -e ", get("command")))
+    run("st " preif(" -e ", get("command")))
     # urxvt breaks the alt key. guessed as much, all terms are broken badly
 #    run("urxvt -j -ss -fade 20 -vb -sb +sr +si -sk -ptab -sl 500 -tcw +ssc " xterm_color preif(" -e ", get("command")))
 }
