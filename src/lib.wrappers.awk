@@ -139,9 +139,12 @@ func surf(url,    f, c) {
     f = f flag("-c", get("cookie_file"))
     runHook("surf " f " " Q(url))
 }
+func firefox(url) {
+        runHook("firefox " Q(url))
+}
 func browser(url) {
     let("label", gensub(/^(https?:\/\/)?([^/]+).*$/, "\\2", 1, url))
-    return "@surf " url
+    return "@firefox " url
 }
 
 func man(args) {
