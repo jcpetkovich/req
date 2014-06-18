@@ -55,6 +55,7 @@ get("file.mimetype") !~ /image\/svg/ && get("file.mimetype") ~ /image\// {
 
 # documents
 get("file.mimetype") ~ /^application\/pdf/ {
+    run("zathura " Q(get("file.name")))
     run("mupdf " Q(get("file.name")))
     run("xpdf -cont -z width " Q(get("file.name")))
 }
